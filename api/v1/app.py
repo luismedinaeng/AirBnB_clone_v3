@@ -5,7 +5,6 @@ Main module of web app
 from models import storage
 from api.v1.views import app_views
 from flask import Flask
-
 from os import getenv
 
 app = Flask(__name__)
