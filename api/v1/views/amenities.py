@@ -73,6 +73,6 @@ def update_amenity(state_id):
         abort(400, description="Not a Json")
     for key, value in body.items():
         if key not in ['id', 'created_at', 'updated_at']:
-            setattr(state, key, value)
+            setattr(amenitie, key, value)
     storage.save()
     return make_response(jsonify(amenity.to_dict()), 200)
