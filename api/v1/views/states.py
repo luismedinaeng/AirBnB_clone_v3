@@ -71,7 +71,7 @@ def update_state(state_id):
     try:
         body = request.get_json()
     except:
-        abort(400, description="Not a Json")
+        abort(400, description="Not a JSON")
     for key, value in body.items():
         if key not in ['id', 'created_at', 'updated_at']:
             setattr(state, key, value)
