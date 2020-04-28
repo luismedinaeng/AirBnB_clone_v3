@@ -9,6 +9,7 @@ from models.city import City
 from models.place import Place
 from models.user import User
 
+
 @app_views.route('/cities/<city_id>/places', methods=['GET'])
 def cities_places(city_id):
     cities = storage.get(City, city_id)

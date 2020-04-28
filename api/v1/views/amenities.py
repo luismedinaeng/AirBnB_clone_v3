@@ -8,7 +8,7 @@ from models import storage
 from models.amenity import Amenity
 
 
-@app_views.route('/amenities', methods=['GET'], strict_slashes=False)
+@app_views.route('/amenities', methods=['GET'])
 def amenities():
     """
     Return a list of all states
@@ -17,7 +17,7 @@ def amenities():
     return jsonify([obj.to_dict() for obj in amenities])
 
 
-@app_views.route('/amenities/<amenity_id>', methods=['GET'], strict_slashes=False)
+@app_views.route('/amenities/<amenity_id>', methods=['GET'])
 def ret_amenities(state_id):
     """
     Return a amenitie
@@ -43,7 +43,7 @@ def delete_amenity(amenity_id):
     return make_response(jsonify({}), 200)
 
 
-@app_views.route('/amenities', methods=['POST'], strict_slashes=False)
+@app_views.route('/amenities', methods=['POST'])
 def create_amenity():
     """
     Create a state
@@ -60,7 +60,7 @@ def create_amenity():
     return make_response(jsonify(new_amenity.to_dict()), 201)
 
 
-@app_views.route('/amenities/<amenity_id>', methods=['PUT'], strict_slashes=False)
+@app_views.route('/amenities/<amenity_id>', methods=['PUT'])
 def update_amenity(state_id):
     """
     update a state
@@ -68,8 +68,9 @@ def update_amenity(state_id):
     amenity = storage.get(Amenity, amenity_id)
     if not amenity:
         abort(404)
-    body = request.get_json()
-    if not body:
+    try:
+        body = request.get_json()
+    except:
         abort(400, description="Not a Json")
     for key, value in body.items():
         if key not in ['id', 'created_at', 'updated_at']:
