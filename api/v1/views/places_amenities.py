@@ -14,7 +14,7 @@ from api.v1.views import app_views
 @app_views.route('/places/<place_id>/amenities', methods=['GET'])
 def places_amenities(place_id):
     """ List of all amenities in a place """
-    place = storage.get("Place", place_id)
+    place = storage.get(Place, place_id)
     if not place:
         abort(404)
     if getenv('HBNB_TYPE_STORAGE') == 'db':
