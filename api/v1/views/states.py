@@ -52,7 +52,7 @@ def create_state():
     if not state:
         abort(400, "Not a JSON")
     if "name" not in state:
-        abort(400, "Missing name")
+        abort(400, description="Missing name")
     new_state = State(**state)
     storage.new(new_state)
     storage.save()
