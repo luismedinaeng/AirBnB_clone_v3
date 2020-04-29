@@ -99,11 +99,11 @@ def search_place():
     body = request.get_json()
     if body is None:
         abort(400, description="Not a JSON")
-    if body:
+    if body and len(body):
         states = body.get('states')
         cities = body.get('cities')
         amenities = body.get('amenities')
-    if not body or (not states and not cities and not amanities):
+    if not body and len(body) or (not states and not cities and not amanities):
         places = storage.all(Place).values()
         place_list = []
         for place in places:
@@ -136,5 +136,5 @@ def search_place():
     for value in place_list:
         data = value.to_dict()
         data.pop('amenities')
-        place.append(data)
+        places.append(data)
     return jsonify(places)
