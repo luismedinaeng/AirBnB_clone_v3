@@ -48,9 +48,8 @@ def create_user():
     """
     Create a user
     """
-    try:
-        user = request.get_json()
-    except:
+    user = request.get_json()
+    if not user:
         abort(400, "Not a JSON")
     if "email" not in user:
         abort(400, "Missing email")
@@ -70,9 +69,8 @@ def update_user(user_id):
     user = storage.get(User, user_id)
     if not user:
         abort(404)
-    try:
-        body = request.get_json()
-    except:
+    body = request.get_json()
+    if not body:
         abort(400, description="Not a Json")
     for key, value in body.items():
         if key not in ['id', 'email', 'created_at', 'updated_at']:

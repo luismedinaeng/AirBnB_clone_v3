@@ -48,9 +48,8 @@ def create_amenity():
     """
     Create a state
     """
-    try:
-        amenity = request.get_json()
-    except:
+    amenity = request.get_json()
+    if not amenity:
         abort(400, "Not a JSON")
     if "name" not in amenity:
         abort(400, "Missing name")
@@ -68,9 +67,8 @@ def update_amenity(amenity_id):
     amenity = storage.get(Amenity, amenity_id)
     if not amenity:
         abort(404)
-    try:
-        body = request.get_json()
-    except:
+    body = request.get_json()
+    if not body:
         abort(400, description="Not a Json")
     for key, value in body.items():
         if key not in ['id', 'created_at', 'updated_at']:
