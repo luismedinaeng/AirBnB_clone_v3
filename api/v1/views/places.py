@@ -128,8 +128,8 @@ def search_place():
     if amenities:
         if not place_list:
             place_list = storage.all(Place).values()
-            amenitieso = [storage.get(Amenity, key) for key in amenities]
-            place_list = [place for place in place_list
+        amenitieso = [storage.get(Amenity, key) for key in amenities]
+        place_list = [place for place in place_list
                           if all([key in place.amenities
                                   for key in amenitieso])]
     places = []
