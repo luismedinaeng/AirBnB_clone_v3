@@ -18,7 +18,7 @@ def amenities():
 
 
 @app_views.route('/amenities/<amenity_id>', methods=['GET'])
-def ret_amenities(state_id):
+def ret_amenities(amenity_id):
     """
     Return a amenitie
     """
@@ -61,7 +61,7 @@ def create_amenity():
 
 
 @app_views.route('/amenities/<amenity_id>', methods=['PUT'])
-def update_amenity(state_id):
+def update_amenity(amenity_id):
     """
     update a state
     """
